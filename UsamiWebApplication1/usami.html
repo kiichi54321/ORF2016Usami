@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+    <link href="Scripts/bootstrap.min.js" rel="stylesheet">
+    <script src="Scripts/lodash.min.js" ></script>
+    <style>
+        .todo-d;efault {
+            padding: 5px;
+            border-bottom: 1px solid silver;
+        }
+        .todo-doing {
+            background-color: floralwhite;
+        }
+        .todo-doing {
+            position: relative;
+            display: inline-block;
+            overflow: hidden; /* 不要部分を消す */
+            padding: 1px;
+        }
+        .center{
+            margin:0,auto;
+/*            margin-left:auto;
+           margin-right:auto
+    */
+        }
+        .selected {
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            filter: grayscale(100%);
+        }
+        .pairmatch{
+            background-color:red
+        }
+        .pair{
+            float:left;margin:5px;background-color:bisque;
+        }
+            .todo-doing:after {
+                content: "";
+                position: absolute;
+                z-index: 1;
+                width: 100px;
+                height: auto;
+                background: red;
+                content: "Selected"; /* 表示するテキスト */
+                text-align: center;
+                color: #fff;
+                font-family: 'Arial';
+                font-weight: bold;
+                padding: 5px 10px;
+                left: -30px;
+                top: 3px;
+                transform: rotate(-30deg);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            }
+    </style> 
+</head>
+<body>
+    <div id="app">
+        <div style="margin-left:auto;margin-right:auto;width:500px">
+            <img src="Image/logo.jpg" />
+        </div>        
+        <div  class="center">
+            <h3 class="center">
+                おなじブランドのものを選んでください。それがどれだけあっているかのクイズです。
+                <button v-on:click="replay" class="btn btn-lg">やり直す</button>
+            </h3>
+
+        </div>   
+        <div>
+            <div class="row" style="width:600px;margin-left:auto;margin-right:auto;height:370px">
+                    <div v-for="item in imageList" v-show="item.visble" style="float:left;" >
+                        <img src="{{item.Image}}"  v-on:click="begin($index)" v-bind:class="{ selected:item.check}" />
+                </div>
+            </div>
+        </div>
+        <div  style="clear:left">
+
+        </div>
+
+        <div class="row">
+            <div  class="center">
+                    <div v-for="pair in selectedPair"  class="col-sm-3 pair"  v-bind:class="'pairmatch':this.isHit" >
+                        <button v-on:click="clearSelect($index)" class="btn btn-default btn-lg">X</button>
+                        <div v-for="item in pair" style="float:left;">
+                            <img src="{{item.Image}}" />
+                            <div v-show="showResult" >
+                                {{item.Brand}}
+                                </div>
+                            </div>
+                    </div>
+            </div>
+        </div>
+        <div style="clear:left;">
+            <div class="center" style="width:100px">
+                <div v-show="showMark">
+                    <button v-on:click="mark" class="btn btn-lg">採点する</button>
+                </div>
+                <div v-show="showResult" style="margin-left:auto;margin-right:auto;">
+                    <h1 class="lead" style="font-size:larger">  {{result}}</h1>
+                </div>
+                <div v-show="showReplay" style="margin-left:auto;margin-right:auto;">
+                    <button v-on:click="replay" class="btn btn-lg">やり直す</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="Scripts/vue.min.js"></script>
+    <script src="usamiMain.js">
+    </script>
+</body>
+</html>

@@ -102,6 +102,8 @@
     </Content>
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <Content Include="yoshika.html" />
+    <Content Include="yoshikaMain.js" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

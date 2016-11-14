@@ -72,7 +72,7 @@ var v = new Vue({
     el: '#app',
     data: {
         message: 'Hello Vue.js!',
-        imageList: imageList,
+        imageList: imageList,        
         selectedPair: selectedPair,
         scene: 0,
         result: 0,
@@ -80,7 +80,10 @@ var v = new Vue({
         showMark:false,
         showReplay:false
     },
-
+    computed: {
+        brandList: function () {
+            return _.uniq(_.map(imageList, n=>n.Brand));        }
+    },
     methods: {
         begin: function (index) {
             this.message = imageList[index].id;

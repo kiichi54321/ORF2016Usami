@@ -56,6 +56,16 @@
                 transform: rotate(-30deg);
                 box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
             }
+        ul {
+            font-size: 0;
+        }
+        li {
+            background-color:  darkgrey;
+            display: inline-block;
+            font-size: 15px;
+            width: 10%;
+            margin:5px;
+        }
     </style> 
 </head>
 <body>
@@ -70,6 +80,12 @@
             </h3>
 
         </div>   
+        <div class="center">
+            <ul>
+                <li v-for="item in brandList">{{item}}</li>
+            </ul>
+        </div>
+
         <div>
             <div class="row" style="width:600px;margin-left:auto;margin-right:auto;height:370px">
                     <div v-for="item in imageList" v-show="item.visble" style="float:left;" >
@@ -109,7 +125,6 @@
         </div>
     </div>
     <script src="Scripts/vue.min.js"></script>
-    <script src="usamiMain.js">
-    </script>
+    <script src="usamiMain.js">    </script>
 </body>
 </html>
